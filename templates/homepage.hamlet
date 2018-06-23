@@ -29,5 +29,4 @@
                                     #{channelTitle $ entityVal channel}
                                 <p class="list-group-item-text">
                                     #{channelDescription $ entityVal channel}
-
-    <hr>
+<hr>

@@ -105,8 +105,8 @@ instance Yesod App where
         muser <- maybeAuthPair
         mcurrentRoute <- getCurrentRoute
 
-        -- Get the breadcrumbs, as defined in the YesodBreadcrumbs instance.
-        (title, parents) <- breadcrumbs
+        -- -- Get the breadcrumbs, as defined in the YesodBreadcrumbs instance.
+        -- (title, parents) <- breadcrumbs
 
         -- Define the menu items of the header.
         let menuItems =
@@ -164,6 +164,7 @@ instance Yesod App where
     isAuthorized CommentR _ = return Authorized
     isAuthorized HomeR _ = return Authorized
     isAuthorized ChannelR _ = return Authorized
+    isAuthorized (ChatR _) _ = return Authorized
     isAuthorized FaviconR _ = return Authorized
     isAuthorized RobotsR _ = return Authorized
     isAuthorized (StaticR _) _ = return Authorized
@@ -208,18 +209,18 @@ instance Yesod App where
     makeLogger :: App -> IO Logger
     makeLogger = return . appLogger
 
--- Define breadcrumbs.
-instance YesodBreadcrumbs App where
-    -- Takes the route that the user is currently on, and returns a tuple
-    -- of the 'Text' that you want the label to display, and a previous
-    -- breadcrumb route.
-    breadcrumb
-        :: Route App  -- ^ The route the user is visiting currently.
-        -> Handler (Text, Maybe (Route App))
-    breadcrumb HomeR = return ("Home", Nothing)
-    breadcrumb (AuthR _) = return ("Login", Just HomeR)
-    breadcrumb ProfileR = return ("Profile", Just HomeR)
-    breadcrumb  _ = return ("home", Nothing)
+-- -- Define breadcrumbs.
+-- instance YesodBreadcrumbs App where
+--     -- Takes the route that the user is currently on, and returns a tuple
+--     -- of the 'Text' that you want the label to display, and a previous
+--     -- breadcrumb route.
+--     breadcrumb
+--         :: Route App  -- ^ The route the user is visiting currently.
+--         -> Handler (Text, Maybe (Route App))
+--     breadcrumb HomeR = return ("Home", Nothing)
+--     breadcrumb (AuthR _) = return ("Login", Just HomeR)
+--     breadcrumb ProfileR = return ("Profile", Just HomeR)
+--     breadcrumb  _ = return ("home", Nothing)
 
 -- How to run database actions.
 instance YesodPersist App where

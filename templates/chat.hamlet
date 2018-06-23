@@ -1,0 +1,53 @@
+<div .row>
+    <div .chat.col-lg-6.col-lg-offset-3>
+        <div .chat-header>
+            <h3>
+                #{channelTitle}
+        <div .chat-content>
+            <ul .chat-messages>
+                <li .chat-message>
+                    <strong class="primary-font me">Jack Sparrow</strong>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                        dolor, quis ullamcorper ligula sodales.
+                <li .chat-message>
+                    <strong class="primary-font other">Jack Sparrow</strong>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                        dolor, quis ullamcorper ligula sodales.
+                <li .chat-message>
+                    <strong class="primary-font me">Jack Sparrow</strong>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                        dolor, quis ullamcorper ligula sodales.
+                <li .chat-message>
+                    <strong class="primary-font other">Jack Sparrow</strong>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                        dolor, quis ullamcorper ligula sodales.
+                <li .chat-message>
+                    <strong class="primary-font me">Jack Sparrow</strong>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                        dolor, quis ullamcorper ligula sodales.
+                <li .chat-message>
+                    <strong class="primary-font other">Jack Sparrow</strong>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                        dolor, quis ullamcorper ligula sodales.
+                <li .chat-message>
+                    <strong class="primary-font me">Jack Sparrow</strong>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                        dolor, quis ullamcorper ligula sodales.
+                <li .chat-message>
+                    <strong class="primary-font other">Jack Sparrow</strong>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                        dolor, quis ullamcorper ligula sodales.
+        <div .chat-sender>
+            <form .chat-form>
+                <textarea row=5 .chat-textarea placeholder="Digite a mensagem">
+                <input type="hidden" value=#{toPathPiece channelId}>
+
+<hr>
