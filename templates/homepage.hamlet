@@ -6,7 +6,7 @@
                     <h1 #json>Canais
 
                     <p>
-                        Crie um canal para conversar com os seus amigos
+                        Crie um novo canal ou entre em algum para conversar com os seus amigos
 
         <div .row>
             <div .col-lg-6>
@@ -21,11 +21,13 @@
                            Criar canal
 
            <div .col-lg-4.col-lg-offset-1>
-               <div .bs-callout.bs-callout-info>
-                   <small>
-                       Escolha um canal para conversar com os seus amigos.
-                   <ul ##{channelsListId}>
-                       $forall comment <- allComments
-                           <li>#{commentMessage $ entityVal comment}
+               <div .bs-callout.bs-callout-info style="padding: 0px">
+                    <div ##{channelsListId} class="list-group" style="margin: 0px">
+                        $forall channel <- allChannels
+                            <a href="#" class="list-group-item">
+                                <h4 class="list-group-item-heading">
+                                    #{channelTitle $ entityVal channel}
+                                <p class="list-group-item-text">
+                                    #{channelDescription $ entityVal channel}
 
     <hr>

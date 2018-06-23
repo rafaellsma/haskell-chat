@@ -26,7 +26,16 @@ $(function() {
         description: description
       }),
       success: function (data) {
-        console.log('ok ' + data)
+        console.log(JSON.stringify(data));
+        var h4Node = $("<h4 class='list-group-item-heading'></h4>");
+        h4Node.text(data.title);
+        var pNode = $("<p class='list-group-item-text'></p>");
+        pNode.text(data.description);
+        var aNode = $("<a href='#' class='list-group-item'></a>");
+        aNode.append(h4Node);
+        aNode.append(pNode);
+        $("##{rawJS channelsListId}").append(aNode);
+        console.log(JSON.stringify(data));
       },
       error: function (data) {
         console.log("Error creating comment: " + data);

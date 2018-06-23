@@ -24,7 +24,7 @@ data FileForm = FileForm
 -- inclined, or create a single monolithic file.
 getHomeR :: Handler Html
 getHomeR = do
-    allComments <- runDB $ getAllComments
+    allChannels <- runDB $ getAllChannels
 
     defaultLayout $ do
         let (channelFormId, channelTitleId, channelDescriptionId, channelsListId) = channelIds
