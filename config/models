@@ -20,3 +20,5 @@ Channel
     title Text
     description Text
     UniqueChannel title
+    deriving Eq
+    deriving Show
