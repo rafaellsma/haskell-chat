@@ -1,29 +1,32 @@
-document.getElementById(#{toJSON aDomId}).innerHTML = "This text was added by the Javascript part of the homepage widget.";
-
 $(function() {
-  $("##{rawJS commentFormId}").submit(function(event) {
+  $("##{rawJS channelFormId}").submit(function(event) {
     event.preventDefault();
 
-    var message = $("##{rawJS commentTextareaId}").val();
+    var title = $("##{rawJS channelTitleId}").val();
     // (Browsers that enforce the "required" attribute on the textarea won't see this alert)
-    if (!message) {
-      alert("Please fill out the comment form first.");
+    if (!title) {
+      alert("Por favor preencha o titulo do canal.");
+      return;
+    }
+
+    var description = $("##{rawJS channelDescriptionId}").val();
+    // (Browsers that enforce the "required" attribute on the textarea won't see this alert)
+    if (!description) {
+      alert("Por favor preencha a descrição do canal");
       return;
     }
 
     // Make an AJAX request to the server to create a new comment
     $.ajax({
-      url: '@{CommentR}',
+      url: '@{ChannelR}',
       type: 'POST',
       contentType: "application/json",
       data: JSON.stringify({
-        message: message,
+        title: title,
+        description: description
       }),
       success: function (data) {
-        var newNode = $("<li></li>");
-        newNode.text(data.message);
-        console.log(data);
-        $("##{rawJS commentListId}").append(newNode);
+        console.log('ok ' + data)
       },
       error: function (data) {
         console.log("Error creating comment: " + data);
