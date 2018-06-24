@@ -170,7 +170,8 @@ instance Yesod App where
     -- delegate to that function
     isAuthorized ProfileR _ = isAuthenticated
     isAuthorized HomeR _ = isAuthenticated
-    isAuthorized ChannelR _ = isAuthenticated
+    isAuthorized ChannelR _ = isAuthenticatedApi
+    isAuthorized (MessageR _) _ = isAuthenticatedApi
     isAuthorized (ChatR _) _ = isAuthenticated
 
     -- This function creates static content files in the static folder
@@ -270,6 +271,13 @@ isAuthenticated = do
     muid <- maybeAuthId
     return $ case muid of
         Nothing -> AuthenticationRequired
+        Just _ -> Authorized
+
+isAuthenticatedApi :: Handler AuthResult
+isAuthenticatedApi = do
+    muid <- maybeAuthId
+    return $ case muid of
+        Nothing -> Unauthorized "UNAUTHORIZED"
         Just _ -> Authorized
 
 instance YesodAuthPersist App

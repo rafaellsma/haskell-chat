@@ -48,8 +48,5 @@
         <div .chat-sender>
             <form .chat-form>
                 <textarea row=5 .chat-textarea placeholder="Digite a mensagem">
-                <input type="hidden" value=#{toPathPiece channelId}>
-                $maybe Entity userid user <- muser
-                    <input type="hidden" value=#{toPathPiece userid}>
 
 <hr>

@@ -16,3 +16,5 @@
 /channels ChannelR POST
 
 /chat/#ChannelId ChatR GET
+
+/channel/#ChannelId/messages MessageR POST

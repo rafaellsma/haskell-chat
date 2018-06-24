@@ -1,0 +1,31 @@
+$(function() {
+    $(".chat-textarea").keypress(function (e) {
+        if(e.which == 13) {
+            if(e.ctrlKey){
+                console.log("ctrl");
+                $(this).val($(this).val() + "\n");
+            }else{
+                var body = $(this).val();
+                var channelId = $("#channel-id-input").val();
+                var userId = $("#channel-userid-input").val();
+                 $.ajax({
+                    url: '@{MessageR channelId}',
+                    type: 'POST',
+                    contentType: "application/json",
+                    data: JSON.stringify({
+                        body: body
+                    }),
+                    success: function (data) {
+                        console.log("success " + JSON.stringify(data));
+                    },
+                    error: function (data) {
+                        console.log("Error creating message: " + JSON.stringify(data));
+                    },
+                });
+
+                $(this).val("");
+            }
+            e.preventDefault();
+        }
+    });
+});

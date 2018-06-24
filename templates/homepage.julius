@@ -3,20 +3,17 @@ $(function() {
     event.preventDefault();
 
     var title = $("##{rawJS channelTitleId}").val();
-    // (Browsers that enforce the "required" attribute on the textarea won't see this alert)
     if (!title) {
       alert("Por favor preencha o titulo do canal.");
       return;
     }
 
     var description = $("##{rawJS channelDescriptionId}").val();
-    // (Browsers that enforce the "required" attribute on the textarea won't see this alert)
     if (!description) {
       alert("Por favor preencha a descrição do canal");
       return;
     }
 
-    // Make an AJAX request to the server to create a new comment
     $.ajax({
       url: '@{ChannelR}',
       type: 'POST',

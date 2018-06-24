@@ -25,6 +25,6 @@ Channel json
     deriving Show
 Message json
     body Text
-    userId UserId
-    channelId channelId
+    userId UserId Maybe
+    channelId ChannelId Maybe
     deriving Show

@@ -10,7 +10,6 @@ import Import
 getChatR :: ChannelId -> Handler Html
 getChatR channelId = do
     channel <- runDB $ get404 channelId
-    muser <- maybeAuth
     defaultLayout $ do
         setTitle "Chat Monstro"
         $(widgetFile "chat")
