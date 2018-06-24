@@ -71,12 +71,12 @@
     word-break: break-all;
 }
 
-strong.me {
+.me {
     display: block;
     text-align: end;
 }
 
-strong.other {
+.other {
     display: block;
     text-align: start;
 }

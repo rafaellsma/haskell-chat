@@ -5,46 +5,8 @@
                 #{channelTitle channel}
         <div .chat-content>
             <ul .chat-messages>
-                <li .chat-message>
-                    <strong class="primary-font me">Jack Sparrow</strong>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                        dolor, quis ullamcorper ligula sodales.
-                <li .chat-message>
-                    <strong class="primary-font other">Jack Sparrow</strong>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                        dolor, quis ullamcorper ligula sodales.
-                <li .chat-message>
-                    <strong class="primary-font me">Jack Sparrow</strong>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                        dolor, quis ullamcorper ligula sodales.
-                <li .chat-message>
-                    <strong class="primary-font other">Jack Sparrow</strong>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                        dolor, quis ullamcorper ligula sodales.
-                <li .chat-message>
-                    <strong class="primary-font me">Jack Sparrow</strong>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                        dolor, quis ullamcorper ligula sodales.
-                <li .chat-message>
-                    <strong class="primary-font other">Jack Sparrow</strong>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                        dolor, quis ullamcorper ligula sodales.
-                <li .chat-message>
-                    <strong class="primary-font me">Jack Sparrow</strong>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                        dolor, quis ullamcorper ligula sodales.
-                <li .chat-message>
-                    <strong class="primary-font other">Jack Sparrow</strong>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                        dolor, quis ullamcorper ligula sodales.
+                $forall messageEntity <- allMessages
+                    ^{showMessageUser messageEntity}
         <div .chat-sender>
             <form .chat-form>
                 <textarea row=5 .chat-textarea placeholder="Digite a mensagem">

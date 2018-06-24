@@ -1,0 +1,4 @@
+<li .chat-message>
+    <strong class="primary-font #{getMessageClass muserid userid}">#{userIdent user}</strong>
+    <p class="#{getMessageClass muserid userid}">
+        #{messageBody message}

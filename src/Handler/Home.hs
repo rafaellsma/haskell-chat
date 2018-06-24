@@ -35,8 +35,5 @@ getHomeR = do
 channelIds :: (Text, Text, Text, Text)
 channelIds = ("js-channelForm", "js-channelTitle", "js-channelDescription", "js-channelList")
 
-getAllComments :: DB [Entity Comment]
-getAllComments = selectList [] [Asc CommentId]
-
 getAllChannels :: DB [Entity Channel]
 getAllChannels = selectList [] [Asc ChannelId]
