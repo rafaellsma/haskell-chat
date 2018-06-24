@@ -23,10 +23,10 @@
            <div .col-lg-4.col-lg-offset-1>
                <div .bs-callout.bs-callout-info style="padding: 0px">
                     <div ##{channelsListId} class="list-group" style="margin: 0px">
-                        $forall channel <- allChannels
-                            <a href="#" class="list-group-item">
+                        $forall Entity channelid channel <- allChannels
+                            <a href="@{ChatR channelid}" class="list-group-item">
                                 <h4 class="list-group-item-heading">
-                                    #{channelTitle $ entityVal channel}
+                                    #{channelTitle channel}
                                 <p class="list-group-item-text">
-                                    #{channelDescription $ entityVal channel}
+                                    #{channelDescription channel}
 <hr>

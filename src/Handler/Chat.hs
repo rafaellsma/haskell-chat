@@ -9,7 +9,7 @@ import Import
 
 getChatR :: ChannelId -> Handler Html
 getChatR channelId = do
-    (Channel channelTitle _) <- runDB $ get404 channelId
+    channel <- runDB $ get404 channelId
     defaultLayout $ do
         setTitle "Chat Monstro"
         $(widgetFile "chat")
