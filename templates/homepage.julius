@@ -28,7 +28,7 @@ $(function() {
         h4Node.text(data.title);
         var pNode = $("<p class='list-group-item-text'></p>");
         pNode.text(data.description);
-        var aNode = $("<a href='#' class='list-group-item'></a>");
+        var aNode = $("<a href='/chat/" + data.id + "' class='list-group-item'></a>");
         aNode.append(h4Node);
         aNode.append(pNode);
         $("##{rawJS channelsListId}").append(aNode);
