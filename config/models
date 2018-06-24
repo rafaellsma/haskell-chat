@@ -6,6 +6,7 @@ User
     password Text Maybe
     UniqueUser ident
     deriving Typeable
+    deriving Show
 Email
     email Text
     userId UserId Maybe
@@ -21,4 +22,9 @@ Channel json
     description Text
     UniqueChannel title
     deriving Eq
+    deriving Show
+Message json
+    body Text
+    userId UserId
+    channelId channelId
     deriving Show
