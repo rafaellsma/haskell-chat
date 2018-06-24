@@ -18,8 +18,7 @@ import Control.Monad.Logger (LogSource)
 
 -- Used only when in "auth-dummy-login" setting is enabled.
 import Yesod.Auth.Dummy
-
-import Yesod.Auth.OpenId    (authOpenId, IdentifierType (Claimed))
+import Yesod.Auth.GoogleEmail2
 import Yesod.Default.Util   (addStaticContentExternal)
 import Yesod.Core.Types     (Logger)
 import qualified Yesod.Core.Unsafe as Unsafe
@@ -48,6 +47,11 @@ data MenuTypes
     = NavbarLeft MenuItem
     | NavbarRight MenuItem
 
+clientId :: Text
+clientId = "976596293072-0tpk9e0tt913o2oa12v6fjrn1srqbb15.apps.googleusercontent.com"
+
+clientSecret :: Text
+clientSecret = "i3Fekd9ViQ5Q4po12VK8hRdo"
 -- This is where we define all of the routes in our application. For a full
 -- explanation of the syntax, please see:
 -- http://www.yesodweb.com/book/routing-and-handlers
@@ -115,11 +119,6 @@ instance Yesod App where
                     , menuItemRoute = HomeR
                     , menuItemAccessCallback = True
                     }
-                , NavbarLeft $ MenuItem
-                    { menuItemLabel = "Profile"
-                    , menuItemRoute = ProfileR
-                    , menuItemAccessCallback = isJust muser
-                    }
                 , NavbarRight $ MenuItem
                     { menuItemLabel = "Login"
                     , menuItemRoute = AuthR LoginR
@@ -161,14 +160,12 @@ instance Yesod App where
         -> Handler AuthResult
     -- Routes not requiring authentication.
     isAuthorized (AuthR _) _ = return Authorized
-    isAuthorized CommentR _ = return Authorized
     isAuthorized FaviconR _ = return Authorized
     isAuthorized RobotsR _ = return Authorized
     isAuthorized (StaticR _) _ = return Authorized
 
     -- the profile route requires that the user is authenticated, so we
     -- delegate to that function
-    isAuthorized ProfileR _ = isAuthenticated
     isAuthorized HomeR _ = isAuthenticated
     isAuthorized ChannelR _ = isAuthenticatedApi
     isAuthorized (MessageR _) _ = isAuthenticatedApi
@@ -210,19 +207,6 @@ instance Yesod App where
     makeLogger :: App -> IO Logger
     makeLogger = return . appLogger
 
--- -- Define breadcrumbs.
--- instance YesodBreadcrumbs App where
---     -- Takes the route that the user is currently on, and returns a tuple
---     -- of the 'Text' that you want the label to display, and a previous
---     -- breadcrumb route.
---     breadcrumb
---         :: Route App  -- ^ The route the user is visiting currently.
---         -> Handler (Text, Maybe (Route App))
---     breadcrumb HomeR = return ("Home", Nothing)
---     breadcrumb (AuthR _) = return ("Login", Just HomeR)
---     breadcrumb ProfileR = return ("Profile", Just HomeR)
---     breadcrumb  _ = return ("home", Nothing)
-
 -- How to run database actions.
 instance YesodPersist App where
     type YesodPersistBackend App = SqlBackend
@@ -261,9 +245,9 @@ instance YesodAuth App where
 
     -- You can add other plugins like Google Email, email or OAuth here
     authPlugins :: App -> [AuthPlugin App]
-    authPlugins app = [authOpenId Claimed []] ++ extraAuthPlugins
+    authPlugins app = [] ++ extraAuthPlugins
         -- Enable authDummy login if enabled.
-        where extraAuthPlugins = [authDummy | appAuthDummyLogin $ appSettings app]
+        where extraAuthPlugins = [authGoogleEmail clientId clientSecret]
 
 -- | Access function to determine if a user is logged in.
 isAuthenticated :: Handler AuthResult

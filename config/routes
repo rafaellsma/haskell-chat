@@ -9,10 +9,6 @@
 
 / HomeR GET
 
-/comments CommentR POST
-
-/profile ProfileR GET
-
 /channels ChannelR POST
 
 /chat/#ChannelId ChatR GET
