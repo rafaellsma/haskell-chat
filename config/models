@@ -27,4 +27,5 @@ Message json
     body Text
     userId UserId Maybe
     channelId ChannelId Maybe
+    username Text Maybe
     deriving Show

@@ -1,3 +1,50 @@
+var userId = parseInt($("#current-user-id").val());
+var lastId = 0;
+
+const getClass = (u, userId) => {
+    if (u === userId){
+        return "me";
+    } else {
+        return "other";
+    }
+};
+
+const loadMessages = () => {
+    var wasAdded = false;
+    $.ajax({
+        url: '@{MessageR channelId}',
+        type: 'GET',
+        contentType: "application/json",
+        success: function (data) {
+            for(var i = 0; i < data.length; i++){
+                if(data[i].id > lastId){
+                    var html = `<li .chat-message>
+                                    <strong class="primary-font ${getClass(data[i].userId,userId)}">${data[i].username}</strong>
+                                    <p class="${getClass(data[i].userId,userId)}">${data[i].body}</p> 
+                                </li>`
+                    lastId = data[i].id;
+                    $('.chat-messages').append(html)
+                    wasAdded = true;
+                }
+            }
+
+            if(wasAdded) {
+                $('.chat-content').stop().animate({
+                    scrollTop: $(".chat-content")[0].scrollHeight
+                }, 800);
+            }
+        },
+        error: function (data) {
+            console.log("Error creating message: " + JSON.stringify(data));
+        },
+    });
+
+    
+
+    setTimeout(function() {
+      loadMessages(userId, lastId)
+    }, 400)
+}
 $(function() {
     $(".chat-textarea").keypress(function (e) {
         if(e.which == 13) {
@@ -8,7 +55,8 @@ $(function() {
                 var body = $(this).val();
                 var channelId = $("#channel-id-input").val();
                 var userId = $("#channel-userid-input").val();
-                 $.ajax({
+
+                $.ajax({
                     url: '@{MessageR channelId}',
                     type: 'POST',
                     contentType: "application/json",
@@ -16,7 +64,6 @@ $(function() {
                         body: body
                     }),
                     success: function (data) {
-                        console.log("success " + JSON.stringify(data));
                     },
                     error: function (data) {
                         console.log("Error creating message: " + JSON.stringify(data));
@@ -28,4 +75,11 @@ $(function() {
             e.preventDefault();
         }
     });
+
 });
+
+(function poll() {
+setTimeout(function() {
+    loadMessages(userId, lastId);
+    }, 500);
+})();

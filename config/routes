@@ -17,4 +17,4 @@
 
 /chat/#ChannelId ChatR GET
 
-/channel/#ChannelId/messages MessageR POST
+/channel/#ChannelId/messages MessageR POST GET

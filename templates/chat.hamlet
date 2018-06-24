@@ -5,10 +5,11 @@
                 #{channelTitle channel}
         <div .chat-content>
             <ul .chat-messages>
-                $forall messageEntity <- allMessages
-                    ^{showMessageUser messageEntity}
         <div .chat-sender>
             <form .chat-form>
                 <textarea row=5 .chat-textarea placeholder="Digite a mensagem">
 
 <hr>
+
+$maybe Entity userid _ <- muser
+    <input type="hidden" #current-user-id value=#{toPathPiece userid}>
