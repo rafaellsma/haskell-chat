@@ -167,6 +167,7 @@ instance Yesod App where
     -- the profile route requires that the user is authenticated, so we
     -- delegate to that function
     isAuthorized HomeR _ = isAuthenticated
+    isAuthorized ValidatePasswordR _ = isAuthenticated
     isAuthorized ChannelR _ = isAuthenticatedApi
     isAuthorized (MessageR _) _ = isAuthenticatedApi
     isAuthorized (ChatR _) _ = isAuthenticated

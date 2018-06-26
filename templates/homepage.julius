@@ -1,4 +1,29 @@
 $(function() {
+  $("button.locked").click((e) => {
+    var target = e.currentTarget;
+    $("#modal-title").text($(target).attr('data-title'));
+    $("#channel-id-hidden-input").val($(target).attr('data-id'))
+  })
+
+  $("#modal-form").submit((e) =>{
+    e.preventDefault();
+    var channelId = $("#channel-id-hidden-input").val();
+    var password = $("#password-input").val();
+    var channel = {channelId: parseInt(channelId), password: password};
+    $.ajax({
+      url: '@{ValidatePasswordR}',
+      type: 'POST',
+      contentType: "application/json",
+      data: JSON.stringify(channel),
+      success: function (data) {
+        window.location = `/chat/${channelId}?p=${password}`;
+      },
+      error: function (data) {
+        console.log("Error creating comment: " + JSON.stringify(data));
+      },
+    });
+  });
+
   $("##{rawJS channelFormId}").submit(function(event) {
     event.preventDefault();
 

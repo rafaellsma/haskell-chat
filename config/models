@@ -30,3 +30,6 @@ Message json
     channelId ChannelId Maybe
     username Text Maybe
     deriving Show
+ValidatePasswordChannel json
+    password Text
+    channelId ChannelId

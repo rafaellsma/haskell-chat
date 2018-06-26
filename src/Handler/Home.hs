@@ -36,3 +36,6 @@ channelIds = ("js-channelForm", "js-channelTitle", "js-channelDescription", "js-
 
 getAllChannels :: DB [Entity Channel]
 getAllChannels = selectList [] [Asc ChannelId]
+
+getValidatePasswordUrl :: Text -> Text
+getValidatePasswordUrl _ = "oi"

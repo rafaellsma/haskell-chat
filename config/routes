@@ -14,3 +14,5 @@
 /chat/#ChannelId ChatR GET
 
 /channel/#ChannelId/messages MessageR POST GET
+
+/validatepassword ValidatePasswordR POST

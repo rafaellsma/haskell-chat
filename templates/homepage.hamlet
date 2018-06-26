@@ -28,7 +28,7 @@
                         $forall Entity channelid channel <- allChannels
                             $case (channelPassword channel)
                                 $of (Just _)
-                                    <button class="list-group-item locked" data-toggle="modal" data-target="#modal-channel">
+                                    <button class="list-group-item locked" data-toggle="modal" data-target="#modal-channel" data-id="#{toPathPiece channelid}" data-title="#{channelTitle channel}">
                                         <h4 class="list-group-item-heading">
                                             <span class="glyphicon glyphicon-lock"> 
                                             #{channelTitle channel}
@@ -49,19 +49,21 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">
                 &times;
-        <h4 class="modal-title" id="myModalLabel">
+        <h4 class="modal-title" id="modal-title">
             Channel Title
       <div class="modal-body">
-        <form .form-horizontal>
+        <form .form-horizontal #modal-form>
             <div .form-group>
                 <label .control-label.col-sm-2" for="password-input">
                     Senha:
                 <div .col-sm-10>
                     <input type="password" .form-control #password-input required>
+            <input type="hidden" #channel-id-hidden-input>
             <div class="form-group"> 
                 <div class="col-sm-offset-2 col-sm-10">
                     <button type="submit" class="btn btn-primary">
                         Entrar
+            
 
 
     
