@@ -15,6 +15,8 @@
                         <div .form-group>
                             <input type="text" .form-control ##{channelTitleId} placeholder="Digite o titulo do canal" required>
                         <div .form-group>
+                            <input type="password" .form-control #channel-password-input placeholder="Digite uma senha para privar o canal" required>
+                        <div .form-group>
                             <textarea rows="2" .form-control ##{channelDescriptionId} placeholder="Digite a descrição do seu canal" required></textarea>
 
                         <button .btn.btn-primary type=submit>
@@ -24,9 +26,42 @@
                <div .bs-callout.bs-callout-info style="padding: 0px">
                     <div ##{channelsListId} class="list-group" style="margin: 0px">
                         $forall Entity channelid channel <- allChannels
-                            <a href="@{ChatR channelid}" class="list-group-item">
-                                <h4 class="list-group-item-heading">
-                                    #{channelTitle channel}
-                                <p class="list-group-item-text">
-                                    #{channelDescription channel}
+                            $case (channelPassword channel)
+                                $of (Just _)
+                                    <button class="list-group-item locked" data-toggle="modal" data-target="#modal-channel">
+                                        <h4 class="list-group-item-heading">
+                                            <span class="glyphicon glyphicon-lock"> 
+                                            #{channelTitle channel}
+                                        <p class="list-group-item-text">
+                                            #{channelDescription channel}
+                                $of Nothing
+                                    <a href="@{ChatR channelid}" class="list-group-item">
+                                        <h4 class="list-group-item-heading">
+                                            #{channelTitle channel}
+                                        <p class="list-group-item-text">
+                                            #{channelDescription channel}
 <hr>
+    
+<div class="modal fade" id="modal-channel" tabindex="-1" role="dialog" aria-labelledby="modalChannel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">
+                &times;
+        <h4 class="modal-title" id="myModalLabel">
+            Channel Title
+      <div class="modal-body">
+        <form .form-horizontal>
+            <div .form-group>
+                <label .control-label.col-sm-2" for="password-input">
+                    Senha:
+                <div .col-sm-10>
+                    <input type="password" .form-control #password-input required>
+            <div class="form-group"> 
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary">
+                        Entrar
+
+
+    

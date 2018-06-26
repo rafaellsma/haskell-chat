@@ -20,7 +20,7 @@ Comment json -- Adding "json" causes ToJSON and FromJSON instances to be derived
 Channel json
     title Text
     description Text
-    password Text
+    password Text Maybe
     UniqueChannel title
     deriving Eq
     deriving Show

@@ -14,14 +14,21 @@ $(function() {
       return;
     }
 
+    var channel = {
+      title: title,
+      description: description
+    }
+
+    var password = $("#channel-password-input").val();
+    if (password) {
+      channel['password'] = password;
+    }
+
     $.ajax({
       url: '@{ChannelR}',
       type: 'POST',
       contentType: "application/json",
-      data: JSON.stringify({
-        title: title,
-        description: description
-      }),
+      data: JSON.stringify(channel),
       success: function (data) {
         console.log(JSON.stringify(data));
         var h4Node = $("<h4 class='list-group-item-heading'></h4>");
